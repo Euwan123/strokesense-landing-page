@@ -46,6 +46,13 @@ body {
     line-height: 1.6;
     overflow-x: hidden;
     transition: background-color 0.3s ease, color 0.3s ease;
+    padding-right: 0px; 
+    transition: padding-right 0.3s ease-out;
+}
+
+/* Sidebar Padding for Body (prevents content overlap) */
+body.sidebar-open {
+    padding-right: 320px;
 }
 
 .container {
@@ -102,6 +109,7 @@ body.dark-mode .navbar {
     padding: 0;
     transition: background-color 0.3s;
     font-size: 0; /* Hide text */
+    margin-left: 1rem;
 }
 
 .theme-btn::before {
@@ -184,9 +192,8 @@ body.dark-mode .theme-btn::before {
     font-size: 1rem;
     transition: all 0.3s ease;
     cursor: pointer;
-    border: none;
-    position: relative; /* For ripple effect */
-    overflow: hidden; /* For ripple effect */
+    position: relative;
+    overflow: hidden;
 }
 
 .btn-primary {
@@ -516,8 +523,11 @@ body.dark-mode .theme-btn::before {
     margin: 0 auto;
 }
 
-.features {
+.features, .how-it-works, .translation, .gallery, .testimonials {
     padding: 100px 20px;
+}
+
+.features, .testimonials {
     background: var(--bg-secondary);
 }
 
@@ -569,10 +579,6 @@ body.dark-mode .theme-btn::before {
     border-radius: 20px;
     font-size: 0.85rem;
     font-weight: 600;
-}
-
-.how-it-works {
-    padding: 100px 20px;
 }
 
 .steps-container {
@@ -651,8 +657,7 @@ body.dark-mode .theme-btn::before {
 
 /* Translation Tool Section Styling */
 .translation {
-    padding: 100px 20px;
-    background: var(--bg-secondary);
+    background: var(--bg-color);
 }
 
 .translation-tool {
@@ -685,7 +690,7 @@ body.dark-mode .theme-btn::before {
     border: 2px dashed var(--primary-light);
     border-radius: 8px;
     font-size: 2.5rem;
-    font-family: serif; /* Ensure Baybayin characters render clearly */
+    font-family: serif; 
     color: var(--primary-color);
     min-height: 60px;
     display: flex;
@@ -693,6 +698,7 @@ body.dark-mode .theme-btn::before {
     justify-content: center;
     text-align: center;
     animation: fadeIn 1s ease-out;
+    word-break: break-all;
 }
 
 @keyframes fadeIn {
@@ -700,10 +706,6 @@ body.dark-mode .theme-btn::before {
     to { opacity: 1; transform: translateY(0); }
 }
 
-
-.gallery {
-    padding: 100px 20px;
-}
 
 .gallery-grid {
     display: grid;
@@ -803,11 +805,6 @@ body.dark-mode .theme-btn::before {
 
 .lesson-icon {
     font-size: 3rem;
-}
-
-.testimonials {
-    padding: 100px 20px;
-    background: var(--bg-secondary);
 }
 
 .testimonial-grid {
@@ -940,7 +937,7 @@ body.dark-mode .theme-btn::before {
 
 .footer-main {
     display: grid;
-    grid-template-columns: 2fr 1fr;
+    grid-template-columns: 2fr 1fr 1fr;
     gap: 4rem;
     margin-bottom: 30px;
 }
@@ -969,16 +966,17 @@ body.dark-mode .theme-btn::before {
     border-radius: 50%;
     background: var(--bg-secondary);
     color: var(--primary-color);
-    font-size: 1.5rem; /* Larger for icon */
+    font-size: 1.2rem; 
     text-decoration: none;
     transition: all 0.3s ease;
     border: 1px solid var(--border-color);
-    font-weight: 600;
+    box-shadow: var(--shadow-sm);
 }
 
 .social-icon:hover {
     background: var(--primary-color);
     color: white;
+    transform: translateY(-2px) scale(1.1);
 }
 
 .footer-links {
@@ -1013,31 +1011,191 @@ body.dark-mode .theme-btn::before {
     color: var(--text-secondary);
 }
 
-/* Creator Profile Styling */
-.creator-profile {
+/* -------------------------------------- */
+/* Sliding Sidebar Panel Styling (New Feature) */
+/* -------------------------------------- */
+
+.creator-sidebar {
+    position: fixed;
+    top: 0;
+    right: 0;
+    width: 300px; /* Width of the panel */
+    height: 100%;
+    background: var(--card-bg);
+    box-shadow: var(--shadow-lg);
+    z-index: 1001;
+    transform: translateX(100%); /* Start hidden off-screen */
+    transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1); /* Smoother animation */
+    padding: 0;
+    overflow-y: auto;
+    border-left: 1px solid var(--border-color);
+}
+
+.creator-sidebar.active {
+    transform: translateX(0); /* Slide into view */
+}
+
+.sidebar-toggle-container {
+    position: absolute;
+    top: 50%;
+    left: -40px; /* Position the button outside the sidebar */
+    transform: translateY(-50%);
+}
+
+.sidebar-toggle {
+    width: 40px;
+    height: 80px;
+    background: var(--primary-color);
+    color: white;
+    border: none;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.2rem;
+    border-radius: 12px 0 0 12px;
+    box-shadow: var(--shadow-md);
+    transition: background 0.3s, transform 0.3s;
+}
+
+.sidebar-toggle:hover {
+    background: var(--primary-dark);
+}
+
+.sidebar-toggle i {
+    transition: transform 0.3s ease-out;
+}
+
+.creator-sidebar.active .sidebar-toggle i {
+    transform: rotate(180deg); /* Arrow points right when open */
+}
+
+.sidebar-content {
+    padding: 2rem;
     display: flex;
     flex-direction: column;
-    align-items: center;
-    margin-bottom: 1rem;
+    gap: 2rem;
+}
+
+.creator-profile {
+    text-align: center;
+    padding-bottom: 1rem;
+    border-bottom: 1px solid var(--border-color);
 }
 
 .creator-image {
-    width: 80px;
-    height: 80px;
+    width: 100px;
+    height: 100px;
     border-radius: 50%;
     object-fit: cover;
     margin-bottom: 0.5rem;
-    border: 3px solid var(--primary-color);
+    border: 4px solid var(--primary-color);
     box-shadow: var(--shadow-md);
 }
 
 .creator-text {
-    font-size: 1rem;
-    font-weight: 600;
+    font-size: 1.1rem;
+    font-weight: 700;
     color: var(--text-color);
 }
 
+.reflection-box {
+    background: var(--bg-secondary);
+    padding: 1.5rem;
+    border-radius: 12px;
+    border: 1px solid var(--border-color);
+}
+
+.reflection-box h4 {
+    font-size: 1.1rem;
+    margin-bottom: 0.8rem;
+    color: var(--primary-color);
+}
+
+.reflection-box p {
+    font-size: 0.95rem;
+    color: var(--text-secondary);
+    line-height: 1.6;
+}
+
+.sidebar-websites {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.sidebar-websites h4 {
+    font-size: 1.1rem;
+    color: var(--text-color);
+    margin-bottom: 0.5rem;
+    text-align: center;
+}
+
+.sidebar-icon {
+    display: flex;
+    border-radius: 8px;
+    width: 100%;
+    height: auto;
+    padding: 12px 15px;
+    gap: 1rem;
+    align-items: center;
+    justify-content: flex-start;
+    background: var(--card-bg);
+    border: 1px solid var(--border-color);
+    transition: all 0.3s ease;
+    color: var(--text-color); /* Default text color */
+}
+
+.sidebar-icon i {
+    font-size: 1.3rem;
+    color: var(--primary-color);
+    transition: color 0.3s ease;
+}
+
+.sidebar-icon:hover {
+    background: var(--primary-color);
+    color: white;
+    transform: translateX(0);
+    box-shadow: 0 4px 12px rgba(47,168,79,0.3);
+}
+
+.sidebar-icon:hover i {
+    color: white;
+}
+
+.sidebar-icon span {
+    font-weight: 600;
+    font-size: 1rem;
+    color: var(--text-color);
+    transition: color 0.3s ease;
+}
+
+.sidebar-icon:hover span {
+    color: white;
+}
+/* -------------------------------------- */
+
+
+/* Media Queries for Mobile Support (Ensures mobile experience is supported) */
 @media (max-width: 1024px) {
+    body.sidebar-open {
+        padding-right: 0; 
+    }
+
+    .creator-sidebar {
+        width: 250px;
+        transform: translateX(100%);
+        border-left: none;
+    }
+
+    .creator-sidebar.active {
+        transform: translateX(0);
+    }
+    
+    .sidebar-toggle-container {
+        left: -40px; 
+    }
+    
     .hero-container {
         grid-template-columns: 1fr;
         text-align: center;
