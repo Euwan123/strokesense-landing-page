@@ -38,9 +38,9 @@ window.addEventListener('scroll', () => {
     const currentScroll = window.pageYOffset;
     
     if (currentScroll <= 0) {
-        navbar.style.boxShadow = '0 2px 8px rgba(0,0,0,0.08)';
+        navbar.style.boxShadow = 'var(--shadow-sm)';
     } else {
-        navbar.style.boxShadow = '0 4px 16px rgba(0,0,0,0.12)';
+        navbar.style.boxShadow = 'var(--shadow-md)';
     }
     
     lastScroll = currentScroll;
@@ -155,6 +155,7 @@ function syllabify(text) {
 
     const vowels = ['a', 'e', 'i', 'o', 'u'];
     
+    // Consonants are used for CV and C-ending checks
     const consonants = Object.keys(baseMap).filter(c => c.length === 1 && !vowels.includes(c));
     const longConsonants = ['ng'];
 
@@ -201,7 +202,7 @@ function syllabify(text) {
                 }
             }
             
-            // Fallback (e.g. for 'ñ' which is not in our map but we try to clean it out)
+            // Fallback (shouldn't be strictly necessary with clean input)
             if (!foundSyllable) {
                 i += 1; 
             }
@@ -250,13 +251,13 @@ function translateToBaybayin() {
                 continue;
             }
 
-            // 3. Standalone Consonant (C or NG)
+            // 3. Standalone Consonant (C)
             if (syllable.length === 1 && !'aeiou'.includes(syllable)) {
                 const char = syllable;
                 let baseConsonant = char;
                 if (char === 'r') { baseConsonant = 'd'; } 
 
-                // Use the inherent A vowel for the base consonant, then add Virama
+                // Use the inherent A vowel for the base consonant, then add Virama (Pamudpod)
                 if (baseMap[baseConsonant]) {
                     wordBaybayin += baseMap[baseConsonant] + virama;
                 }
@@ -279,7 +280,7 @@ translateToBaybayin();
 translateButton.addEventListener('click', translateToBaybayin);
 tagalogInput.addEventListener('input', translateToBaybayin); 
 tagalogInput.addEventListener('keydown', (e) => {
-    if (e.key === 'Enter' && !e.shiftKey) { // Prevents default behavior (newline) when Enter is pressed alone
+    if (e.key === 'Enter' && !e.shiftKey) { 
         e.preventDefault();
         translateToBaybayin();
     }
@@ -291,23 +292,35 @@ tagalogInput.addEventListener('keydown', (e) => {
 
 const sidebar = document.getElementById('creator-sidebar');
 const sidebarToggle = document.getElementById('sidebar-toggle');
-const navLinksContainer = document.querySelector('.nav-links');
 
 
-sidebarToggle.addEventListener('click', () => {
-    const isActive = sidebar.classList.toggle('active');
-    
-    // Close mobile menu if open
-    if (navLinksContainer.classList.contains('active')) {
-        navLinksContainer.classList.remove('active');
-        mobileMenuToggle.textContent = '☰';
-    }
+if (sidebar && sidebarToggle) {
+    sidebarToggle.addEventListener('click', () => {
+        const isActive = sidebar.classList.toggle('active');
+        const icon = sidebarToggle.querySelector('i');
 
-    // Toggle body class to add padding-right on large screens, preventing content jump
-    if (window.innerWidth > 1024) {
-        body.classList.toggle('sidebar-open', isActive);
-    }
-});
+        // Close mobile menu if open
+        if (navLinks.classList.contains('active')) {
+            navLinks.classList.remove('active');
+            mobileMenuToggle.textContent = '☰';
+        }
+
+        // Toggle icon and body padding for smooth animation/no-jump on desktop
+        if (isActive) {
+            icon.classList.remove('fa-chevron-left');
+            icon.classList.add('fa-chevron-right');
+            if (window.innerWidth > 1024) {
+                body.classList.add('sidebar-open');
+            }
+        } else {
+            icon.classList.remove('fa-chevron-right');
+            icon.classList.add('fa-chevron-left');
+            if (window.innerWidth > 1024) {
+                body.classList.remove('sidebar-open');
+            }
+        }
+    });
+}
 
 
 const style = document.createElement('style');
