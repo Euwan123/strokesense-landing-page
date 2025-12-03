@@ -1,42 +1,408 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <title>Strokesense Landing Page</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>StrokeSense - Learn Baybayin</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 </head>
 <body>
-    <nav>
-        <ul>
-            <li><a href="#">Creators Page</a></li>
-        </ul>
+    <nav class="navbar">
+        <div class="container nav-container">
+            <div class="logo">
+                <span class="logo-text">StrokeSense</span>
+            </div>
+            <ul class="nav-links">
+                <li><a href="https://euwan123.github.io/my-portfolio/" class="btn btn-secondary nav-portfolio-btn">Creator Profile</a></li>
+                <li><a href="#features">Features</a></li>
+                <li><a href="#how-it-works">Process</a></li>
+                <li><a href="#translation">Translation Tool</a></li>
+                <li><a href="#gallery">Visuals</a></li>
+                <li><a href="#testimonials">Reviews</a></li>
+                <li><a href="#cta">Get Started</a></li>
+            </ul>
+            <button id="theme-toggle" class="theme-btn">🌙</button>
+            <button class="mobile-menu-toggle">☰</button>
+        </div>
     </nav>
-    <div class="hero">
-        <h1>Sign up now</h1>
-        <button id="watchDemo">Watch Demo</button>
-    </div>
-    <div class="cta">
-        <button>Sign up now</button>
-    </div>
-    <div class="testimonials">
-        <div class="testimonial">
-            <img src="images/Goku.jpg" alt="Alex M." class="author-avatar"/>
+
+    <header class="hero">
+        <div class="hero-bg-animation"></div>
+        <div class="container hero-container">
+            <div class="hero-content">
+                <div class="hero-badge">🇵🇭 Preserving Filipino Heritage</div>
+                <h1 class="hero-title">
+                    <span class="gradient-text">StrokeSense</span>
+                </h1>
+                <p class="hero-subtitle">Learn Baybayin the Smart and Fun Way</p>
+                <p class="hero-description">
+                    The Philippines has a rich cultural history, and one of its most beautiful treasures is 
+                    <strong>Baybayin</strong>—an ancient script used by our ancestors. StrokeSense brings this 
+                    heritage to life through interactive AI technology, making learning engaging, personalized, 
+                    and incredibly fun!
+                </p>
+                <div class="hero-buttons">
+                    <a href="#cta" class="btn btn-primary">
+                        <span>Start Learning Free</span>
+                        <span class="btn-icon">→</span>
+                    </a>
+                    <a href="#how-it-works" class="btn btn-secondary">
+                        <span>Watch Demo</span>
+                        <span class="btn-icon">▶</span>
+                    </a>
+                </div>
+                <div class="hero-stats">
+                    <div class="stat-item">
+                        <div class="stat-number" data-target="5000">0</div>
+                        <div class="stat-label">Active Learners</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-number" data-target="20">0</div>
+                        <div class="stat-label">Baybayin Characters</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-number" data-target="95">0</div>
+                        <div class="stat-label">Success Rate %</div>
+                    </div>
+                </div>
+            </div>
+            <div class="hero-visual">
+                <div class="floating-card card-1">
+                    <div class="baybayin-char">ᜀ</div>
+                    <div class="char-label">A</div>
+                </div>
+                <div class="floating-card card-2">
+                    <div class="baybayin-char">ᜊ</div>
+                    <div class="char-label">BA</div>
+                </div>
+                <div class="floating-card card-3">
+                    <div class="baybayin-char">ᜃ</div>
+                    <div class="char-label">KA</div>
+                </div>
+                <div class="phone-mockup">
+                    <div class="phone-screen">
+                        <div class="screen-content">
+                            <span class="screen-title">Draw "Ma"</span>
+                            <div class="drawing-area"></div>
+                            <div class="feedback-indicator">AI Accuracy: 92%</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
-        <div class="testimonial">
-            <img src="images/Gojo Satoru.jpg" alt="Jennifer C." class="author-avatar"/>
+        <div class="scroll-indicator">
+            <div class="scroll-arrow">↓</div>
         </div>
-        <div class="testimonial">
-            <img src="images/Sung Jin Woo.webp" alt="Prof. Reyes" class="author-avatar"/>
+    </header>
+
+    <section class="features" id="features">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-badge">Why Choose Us</span>
+                <h2>Experience the Future of Cultural Learning</h2>
+                <p>StrokeSense combines cutting-edge AI technology with gamification to make learning Baybayin an unforgettable journey</p>
+            </div>
+            <div class="feature-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">🤖</div>
+                    <h3>AI-Powered Practice</h3>
+                    <p>Draw Baybayin characters on your device and receive instant, intelligent feedback on stroke accuracy, direction, and style from our advanced AI system.</p>
+                    <div class="feature-highlight">Real-time analysis</div>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🎮</div>
+                    <h3>Gamified Learning</h3>
+                    <p>Earn points, unlock exclusive badges, and complete challenging levels. Turn your learning journey into an exciting adventure with rewards at every milestone.</p>
+                    <div class="feature-highlight">100+ achievements</div>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">📊</div>
+                    <h3>Progress Tracking</h3>
+                    <p>Visual charts, detailed analytics, and personalized insights show your improvement over time, helping you build confidence and master each character.</p>
+                    <div class="feature-highlight">Smart analytics</div>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🏛️</div>
+                    <h3>Cultural Heritage</h3>
+                    <p>Learn authentic Baybayin characters while discovering the rich history, cultural context, and stories behind this beautiful ancient Filipino script.</p>
+                    <div class="feature-highlight">Deep cultural insights</div>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">👥</div>
+                    <h3>Community Learning</h3>
+                    <p>Join a vibrant community of learners, share your progress, compete on leaderboards, and participate in cultural challenges together.</p>
+                    <div class="feature-highlight">Active community</div>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">📱</div>
+                    <h3>Cross-Platform</h3>
+                    <p>Practice anywhere, anytime on your phone, tablet, or computer. Your progress syncs seamlessly across all your devices.</p>
+                    <div class="feature-highlight">Always accessible</div>
+                </div>
+            </div>
         </div>
-    </div>
-    <div id="demoModal" style="display:none;">
-        <iframe width="560" height="315" src="https://www.youtube.com/embed/NE7mwkPdV04" frameborder="0" allowfullscreen></iframe>
-    </div>
-    <script>
-        document.getElementById('watchDemo').onclick = function() {
-            document.getElementById('demoModal').style.display = 'block';
-        };
-    </script>
-    <div class="phone-mockup">
-        <canvas id='drawing-canvas' class="drawing-area"></canvas>
-    </div>
+    </section>
+
+    <section class="how-it-works" id="how-it-works">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-badge">Simple Process</span>
+                <h2>Master Baybayin in 5 Easy Steps</h2>
+                <p>Our proven learning methodology makes it easy and enjoyable to learn this ancient script</p>
+            </div>
+            <div class="steps-container">
+                <div class="step-item">
+                    <div class="step-number">1</div>
+                    <div class="step-content">
+                        <h3>Interactive Handwriting Practice</h3>
+                        <p>Start by tracing Baybayin characters with guided strokes. Our AI watches your technique and provides real-time corrections to help you perfect each character.</p>
+                        <div class="step-icon">✍️</div>
+                    </div>
+                </div>
+                <div class="step-item">
+                    <div class="step-number">2</div>
+                    <div class="step-content">
+                        <h3>Gamified Learning Levels</h3>
+                        <p>Progress through carefully designed levels that increase in difficulty. Each level introduces new characters and combinations while reinforcing what you've learned.</p>
+                        <div class="step-icon">🎯</div>
+                    </div>
+                </div>
+                <div class="step-item">
+                    <div class="step-number">3</div>
+                    <div class="step-content">
+                        <h3>Personalized Feedback</h3>
+                        <p>Receive tailored recommendations based on your unique learning style and performance. Our AI adapts to help you improve faster in areas where you need it most.</p>
+                        <div class="step-icon">💡</div>
+                    </div>
+                </div>
+                <div class="step-item">
+                    <div class="step-number">4</div>
+                    <div class="step-content">
+                        <h3>Cultural Immersion</h3>
+                        <p>Unlock engaging stories, fun facts, and historical context about Baybayin with every new character you master. Learn the *why*, not just the *how*.</p>
+                        <div class="step-icon">🏛️</div>
+                    </div>
+                </div>
+                <div class="step-item">
+                    <div class="step-number">5</div>
+                    <div class="step-content">
+                        <h3>Creative Application</h3>
+                        <p>Apply your skills by translating common Filipino words and phrases. Share your creations with the community and celebrate your mastery.</p>
+                        <div class="step-icon">🖋️</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="translation" id="translation">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-badge">New Feature</span>
+                <h2>Baybayin Translation Tool</h2>
+                <p>Instantly convert modern Filipino (Tagalog) text into beautiful, readable Baybayin script.</p>
+            </div>
+            <div class="translation-tool">
+                <textarea id="tagalog-input" placeholder="Enter Tagalog text here (e.g., 'Magandang umaga, Pilipinas!')"></textarea>
+                <button id="translate-button" class="btn btn-primary">
+                    <span>Translate to Baybayin</span>
+                    <span class="btn-icon">→</span>
+                </button>
+                <div id="baybayin-output" class="baybayin-result">
+                    ᜋᜄᜈ᜔ᜇᜅ᜔ ᜂᜋᜄ ᜉᜒᜎᜒᜉᜒᜈᜐ᜔
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="gallery" id="gallery">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-badge">See It In Action</span>
+                <h2>Experience the Interface</h2>
+                <p>Take a look at our beautifully designed learning environment</p>
+            </div>
+            <div class="gallery-grid">
+                <div class="gallery-item">
+                    <div class="gallery-image">
+                        <div class="mock-interface interface-1">
+                            <div class="interface-header">Practice Mode</div>
+                            <div class="interface-content">
+                                <div class="large-baybayin">ᜋ</div>
+                                <div class="interface-label">MA - Practice stroke order</div>
+                            </div>
+                        </div>
+                    </div>
+                    <h4>Practice Mode</h4>
+                    <p>Guided learning with stroke-by-stroke feedback</p>
+                </div>
+                <div class="gallery-item">
+                    <div class="gallery-image">
+                        <div class="mock-interface interface-2">
+                            <div class="interface-header">Progress Dashboard</div>
+                            <div class="interface-content">
+                                <div class="progress-bars">
+                                    <div class="progress-bar">
+                                        <div class="progress-fill" style="width: 85%"></div>
+                                    </div>
+                                    <div class="progress-bar">
+                                        <div class="progress-fill" style="width: 70%"></div>
+                                    </div>
+                                    <div class="progress-bar">
+                                        <div class="progress-fill" style="width: 92%"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <h4>Track Progress</h4>
+                    <p>Detailed analytics and improvement metrics</p>
+                </div>
+                <div class="gallery-item">
+                    <div class="gallery-image">
+                        <div class="mock-interface interface-3">
+                            <div class="interface-header">Achievements</div>
+                            <div class="interface-content">
+                                <div class="badge-container">
+                                    <span class="badge-emoji">🏅</span>
+                                    <span class="badge-emoji">⭐</span>
+                                    <span class="badge-emoji">🔥</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <h4>Earn Rewards</h4>
+                    <p>Unlock badges and celebrate milestones</p>
+                </div>
+                <div class="gallery-item">
+                    <div class="gallery-image">
+                        <div class="mock-interface interface-4">
+                            <div class="interface-header">Cultural Lessons</div>
+                            <div class="interface-content">
+                                <div class="lesson-text">Baybayin was often written on bamboo or leaves.</div>
+                                <div class="lesson-icon">🌱</div>
+                            </div>
+                        </div>
+                    </div>
+                    <h4>Cultural Context</h4>
+                    <p>Dive deep into the history and culture</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="testimonials" id="testimonials">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-badge">What Learners Say</span>
+                <h2>Trusted by Thousands of Filipinos Worldwide</h2>
+                <p>Our community loves the interactive and personalized approach to learning Baybayin</p>
+            </div>
+            <div class="testimonial-grid">
+                <div class="testimonial-card">
+                    <div class="star-rating">⭐⭐⭐⭐⭐</div>
+                    <p class="testimonial-text">"I've always wanted to learn Baybayin, but felt overwhelmed. StrokeSense made it so easy and fun! The AI feedback is a game-changer."</p>
+                    <div class="testimonial-author">
+                        <div class="author-avatar">A</div>
+                        <div>
+                            <div class="author-name">Alex M.</div>
+                            <div class="author-title">Student from Manila</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="testimonial-card">
+                    <div class="star-rating">⭐⭐⭐⭐⭐</div>
+                    <p class="testimonial-text">"My kids are now competing to earn badges! It's an incredible way to introduce them to their heritage in a modern, engaging way."</p>
+                    <div class="testimonial-author">
+                        <div class="author-avatar">J</div>
+                        <div>
+                            <div class="author-name">Jennifer C.</div>
+                            <div class="author-title">Parent in USA</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="testimonial-card">
+                    <div class="star-rating">⭐⭐⭐⭐⭐</div>
+                    <p class="testimonial-text">"As a language educator, I highly recommend StrokeSense. The stroke analysis is top-notch and provides genuine learning value."</p>
+                    <div class="testimonial-author">
+                        <div class="author-avatar">R</div>
+                        <div>
+                            <div class="author-name">Prof. Reyes</div>
+                            <div class="author-title">Language Expert</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="cta" id="cta">
+        <div class="cta-bg-pattern"></div>
+        <div class="container cta-container">
+            <div class="cta-content">
+                <h2>Ready to Start Your Baybayin Journey?</h2>
+                <p class="cta-subtitle">Unlock the beauty of the ancient Filipino script with personalized, AI-powered education. Start your journey today—completely free!</p>
+                <div class="cta-benefits">
+                    <div class="benefit-item">✓ Free to start</div>
+                    <div class="benefit-item">✓ No credit card required</div>
+                    <div class="benefit-item">✓ Learn at your own pace</div>
+                </div>
+                <div class="cta-buttons">
+                    <a href="#" class="btn btn-cta">
+                        <span>Start Learning Now</span>
+                        <span class="btn-icon">🚀</span>
+                    </a>
+                </div>
+                <p class="cta-subtext">⏱️ Join 5,000+ active learners today</p>
+            </div>
+        </div>
+    </section>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-main">
+                <div class="footer-info">
+                    <div class="logo">
+                        <span class="logo-text">StrokeSense</span>
+                    </div>
+                    <p class="footer-description">
+                        An AI-powered platform dedicated to preserving and teaching the ancient Filipino script, Baybayin.
+                    </p>
+                    <div class="social-links">
+                        <a href="https://github.com/Euwan123" class="social-icon" aria-label="GitHub">
+                            <i class="fab fa-github"></i>
+                        </a>
+                        <a href="https://euwan123.github.io/my-portfolio/" class="social-icon" aria-label="Portfolio">
+                            <i class="fas fa-desktop"></i>
+                        </a>
+                        <a href="https://www.linkedin.com/in/euwan-abogadie-833980313/" class="social-icon" aria-label="LinkedIn">
+                            <i class="fab fa-linkedin-in"></i>
+                        </a>
+                    </div>
+                </div>
+                <div class="footer-links">
+                    <div class="footer-column">
+                        <h4>Product</h4>
+                        <a href="#features">Features</a>
+                        <a href="#how-it-works">Process</a>
+                        <a href="#gallery">Visuals</a>
+                        <a href="#">Pricing</a>
+                    </div>
+                    <div class="footer-column">
+                        <h4>Resources</h4>
+                        <a href="#">Blog</a>
+                        <a href="#">Tutorials</a>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>© 2025 StrokeSense. All Rights Reserved. Made by Euwan Gabriel Abogadie, Mapua Malayan colleges mindanao.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
 </body>
 </html>
