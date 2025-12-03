@@ -1,3 +1,20 @@
+/* CSS Variables for Light & Dark Mode */
+:root {
+    --bg-color: #ffffff;
+    --text-color: #1b3a2a;
+    --primary-color: #2fa84f;
+    --btn-bg: #2fa84f;
+    --btn-hover: #238c3f;
+}
+
+body.dark-mode {
+    --bg-color: #000000;
+    --text-color: #2fa84f;
+    --primary-color: #2fa84f;
+    --btn-bg: #2fa84f;
+    --btn-hover: #238c3f;
+}
+
 /* General Styles */
 * {
     margin: 0;
@@ -7,8 +24,23 @@
 }
 
 body {
+    background-color: var(--bg-color);
+    color: var(--text-color);
     line-height: 1.6;
-    color: #333;
+}
+
+/* Theme Toggle Button */
+#theme-toggle {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    background: var(--btn-bg);
+    color: white;
+    border: none;
+    padding: 10px 15px;
+    border-radius: 5px;
+    cursor: pointer;
+    z-index: 1000;
 }
 
 /* Container */
@@ -21,7 +53,7 @@ body {
 /* Buttons */
 .btn {
     display: inline-block;
-    background-color: #ff6f61;
+    background-color: var(--btn-bg);
     color: white;
     padding: 12px 25px;
     text-decoration: none;
@@ -32,19 +64,19 @@ body {
 }
 
 .btn:hover {
-    background-color: #ff3b2f;
+    background-color: var(--btn-hover);
 }
 
 /* Hero Section */
 .hero {
-    background-color: #f7f3ff;
     text-align: center;
     padding: 100px 20px;
 }
 
 .hero h1 {
-    font-size: 2.5rem;
-    margin-bottom: 15px;
+    font-size: 3rem;
+    margin-bottom: 10px;
+    color: var(--primary-color);
 }
 
 .hero p {
@@ -55,13 +87,14 @@ body {
 /* Features Section */
 .features {
     padding: 80px 20px;
-    background-color: #fff;
+    background-color: var(--bg-color);
     text-align: center;
 }
 
 .features h2 {
     margin-bottom: 50px;
     font-size: 2rem;
+    color: var(--primary-color);
 }
 
 .feature-grid {
@@ -73,7 +106,7 @@ body {
 .feature-card {
     padding: 20px;
     border-radius: 10px;
-    background-color: #f0f0ff;
+    background-color: #e8f5e9;
     transition: transform 0.3s ease;
 }
 
@@ -81,31 +114,15 @@ body {
     transform: translateY(-10px);
 }
 
-.feature-card img {
-    width: 60px;
-    margin-bottom: 15px;
-}
-
-/* Visual Section */
-.visual {
-    text-align: center;
-    padding: 80px 20px;
-}
-
-.visual img {
-    max-width: 100%;
-    border-radius: 15px;
-}
-
 /* Info Section */
 .info {
     padding: 80px 20px;
-    background-color: #f7f3ff;
 }
 
 .info h2 {
     text-align: center;
     margin-bottom: 30px;
+    color: var(--primary-color);
 }
 
 .info ol {
@@ -117,7 +134,7 @@ body {
 
 /* CTA Section */
 .cta {
-    background-color: #ff6f61;
+    background-color: var(--primary-color);
     color: white;
     text-align: center;
     padding: 80px 20px;
@@ -130,18 +147,10 @@ body {
 
 /* Footer */
 footer {
-    background-color: #333;
-    color: white;
+    background-color: var(--text-color);
+    color: var(--bg-color);
     padding: 30px 20px;
     text-align: center;
-}
-
-footer .social-icons a {
-    margin: 0 10px;
-}
-
-footer .social-icons img {
-    width: 25px;
 }
 
 /* Responsive Media Queries */
