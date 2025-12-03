@@ -22,11 +22,10 @@ themeToggle.addEventListener('click', () => {
     localStorage.setItem('theme', isDarkMode ? 'dark' : 'light');
 });
 
-// Mobile Menu Toggle
+// Mobile Menu Toggle - FIX APPLIED: Button now works and changes icon
 const mobileMenuToggle = document.querySelector('.mobile-menu-toggle');
 const navLinks = document.querySelector('.nav-links');
 
-// FIX: Ensure mobile menu toggle works correctly
 mobileMenuToggle.addEventListener('click', () => {
     // 1. Toggle the 'active' class on the navigation links
     navLinks.classList.toggle('active');
@@ -34,18 +33,6 @@ mobileMenuToggle.addEventListener('click', () => {
     
     // 2. Change the button icon (Hamburger <-> Close)
     mobileMenuToggle.textContent = isActive ? '✕' : '☰';
-
-    // 3. Close the Creator Sidebar if the mobile menu opens
-    const sidebar = document.getElementById('creator-sidebar');
-    if (isActive && sidebar && sidebar.classList.contains('active')) {
-        const sidebarToggle = document.getElementById('sidebar-toggle');
-        sidebar.classList.remove('active');
-        sidebarToggle.querySelector('i').classList.remove('fa-chevron-right');
-        sidebarToggle.querySelector('i').classList.add('fa-chevron-left');
-        if (window.innerWidth > 1024) {
-            body.classList.remove('sidebar-open');
-        }
-    }
 });
 
 // Close mobile menu when clicking on a link
@@ -153,7 +140,7 @@ document.querySelectorAll('.btn').forEach(btn => {
 });
 
 // --------------------------------------
-// Baybayin Translation Tool Logic (Accurate and Working)
+// Baybayin Translation Tool Logic 
 // --------------------------------------
 
 const translateButton = document.getElementById('translate-button');
@@ -314,42 +301,6 @@ tagalogInput.addEventListener('keydown', (e) => {
         translateToBaybayin();
     }
 });
-
-// --------------------------------------
-// Sliding Sidebar Logic (New Feature)
-// --------------------------------------
-
-const sidebar = document.getElementById('creator-sidebar');
-const sidebarToggle = document.getElementById('sidebar-toggle');
-
-
-if (sidebar && sidebarToggle) {
-    sidebarToggle.addEventListener('click', () => {
-        const isActive = sidebar.classList.toggle('active');
-        const icon = sidebarToggle.querySelector('i');
-
-        // Close mobile menu if open
-        if (navLinks.classList.contains('active')) {
-            navLinks.classList.remove('active');
-            mobileMenuToggle.textContent = '☰';
-        }
-
-        // Toggle icon and body padding for smooth animation/no-jump on desktop
-        if (isActive) {
-            icon.classList.remove('fa-chevron-left');
-            icon.classList.add('fa-chevron-right');
-            if (window.innerWidth > 1024) {
-                body.classList.add('sidebar-open');
-            }
-        } else {
-            icon.classList.remove('fa-chevron-right');
-            icon.classList.add('fa-chevron-left');
-            if (window.innerWidth > 1024) {
-                body.classList.remove('sidebar-open');
-            }
-        }
-    });
-}
 
 
 const style = document.createElement('style');
