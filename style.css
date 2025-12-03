@@ -52,7 +52,7 @@ body {
 
 /* Sidebar Padding for Body (prevents content overlap) */
 body.sidebar-open {
-    padding-right: 320px;
+    padding-right: 300px; /* Should match sidebar width */
 }
 
 .container {
@@ -1038,8 +1038,8 @@ body.dark-mode .theme-btn::before {
 .sidebar-toggle-container {
     position: absolute;
     top: 50%;
-    left: -40px; /* Position the button outside the sidebar */
-    transform: translateY(-50%);
+    left: 0;
+    transform: translate(-100%, -50%);
 }
 
 .sidebar-toggle {
@@ -1143,7 +1143,7 @@ body.dark-mode .theme-btn::before {
     background: var(--card-bg);
     border: 1px solid var(--border-color);
     transition: all 0.3s ease;
-    color: var(--text-color); /* Default text color */
+    color: var(--text-color); 
 }
 
 .sidebar-icon i {
