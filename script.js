@@ -1,36 +1,65 @@
+// Theme Toggle Functionality
 const themeToggle = document.getElementById('theme-toggle');
 const body = document.body;
+
+// Check for saved theme preference or default to light mode
 const currentTheme = localStorage.getItem('theme') || 'light';
 if (currentTheme === 'dark') {
     body.classList.add('dark-mode');
-    themeToggle.textContent = '☀️'; 
+    themeToggle.textContent = '☀️';
 } else {
     themeToggle.textContent = '🌙';
 }
 
 themeToggle.addEventListener('click', () => {
     body.classList.toggle('dark-mode');
+    
+    // Update button icon
     const isDarkMode = body.classList.contains('dark-mode');
-    localStorage.setItem('theme', isDarkMode ? 'dark' : 'light');
     themeToggle.textContent = isDarkMode ? '☀️' : '🌙';
+    
+    // Save preference
+    localStorage.setItem('theme', isDarkMode ? 'dark' : 'light');
 });
 
+// Mobile Menu Toggle
 const mobileMenuToggle = document.querySelector('.mobile-menu-toggle');
 const navLinks = document.querySelector('.nav-links');
 
+// FIX: Ensure mobile menu toggle works correctly
 mobileMenuToggle.addEventListener('click', () => {
+    // 1. Toggle the 'active' class on the navigation links
     navLinks.classList.toggle('active');
     const isActive = navLinks.classList.contains('active');
+    
+    // 2. Change the button icon (Hamburger <-> Close)
     mobileMenuToggle.textContent = isActive ? '✕' : '☰';
+
+    // 3. Close the Creator Sidebar if the mobile menu opens
+    const sidebar = document.getElementById('creator-sidebar');
+    if (isActive && sidebar && sidebar.classList.contains('active')) {
+        const sidebarToggle = document.getElementById('sidebar-toggle');
+        sidebar.classList.remove('active');
+        sidebarToggle.querySelector('i').classList.remove('fa-chevron-right');
+        sidebarToggle.querySelector('i').classList.add('fa-chevron-left');
+        if (window.innerWidth > 1024) {
+            body.classList.remove('sidebar-open');
+        }
+    }
 });
 
+// Close mobile menu when clicking on a link
 document.querySelectorAll('.nav-links a').forEach(link => {
     link.addEventListener('click', () => {
-        navLinks.classList.remove('active');
-        mobileMenuToggle.textContent = '☰';
+        // Only close if the menu is active
+        if (navLinks.classList.contains('active')) {
+            navLinks.classList.remove('active');
+            mobileMenuToggle.textContent = '☰';
+        }
     });
 });
 
+// Navbar scroll effect...
 let lastScroll = 0;
 const navbar = document.querySelector('.navbar');
 
@@ -342,7 +371,7 @@ style.textContent = `
         transform: translateY(0);
     }
     
-    @media (max-width: 768px) {
+    @media (max-width: 1024px) {
         .nav-links {
             position: fixed;
             top: 70px;
@@ -355,6 +384,7 @@ style.textContent = `
             border-radius: 0 0 0 16px;
             transition: right 0.3s ease;
             gap: 1.5rem;
+            z-index: 999; /* Ensure menu is on top of content */
         }
         
         .nav-links.active {
