@@ -1037,8 +1037,8 @@ body.dark-mode .theme-btn::before {
 }
 
 .cta-content {
-    background: var(--text-color);
-    color: white;
+    background: var(--bg-secondary); /* darker in dark mode */
+    color: var(--text-color);
     padding: 4rem;
     border-radius: 20px;
     max-width: 800px;
