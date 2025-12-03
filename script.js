@@ -1,8 +1,6 @@
-// Theme Toggle Functionality
 const themeToggle = document.getElementById('theme-toggle');
 const body = document.body;
 
-// Check for saved theme preference or default to light mode
 const currentTheme = localStorage.getItem('theme') || 'light';
 if (currentTheme === 'dark') {
     body.classList.add('dark-mode');
@@ -14,31 +12,24 @@ if (currentTheme === 'dark') {
 themeToggle.addEventListener('click', () => {
     body.classList.toggle('dark-mode');
     
-    // Update button icon
     const isDarkMode = body.classList.contains('dark-mode');
     themeToggle.textContent = isDarkMode ? '☀️' : '🌙';
     
-    // Save preference
     localStorage.setItem('theme', isDarkMode ? 'dark' : 'light');
 });
 
-// Mobile Menu Toggle - FIX APPLIED: Button now works and changes icon
 const mobileMenuToggle = document.querySelector('.mobile-menu-toggle');
 const navLinks = document.querySelector('.nav-links');
 
 mobileMenuToggle.addEventListener('click', () => {
-    // 1. Toggle the 'active' class on the navigation links
     navLinks.classList.toggle('active');
     const isActive = navLinks.classList.contains('active');
     
-    // 2. Change the button icon (Hamburger <-> Close)
     mobileMenuToggle.textContent = isActive ? '✕' : '☰';
 });
 
-// Close mobile menu when clicking on a link
 document.querySelectorAll('.nav-links a').forEach(link => {
     link.addEventListener('click', () => {
-        // Only close if the menu is active
         if (navLinks.classList.contains('active')) {
             navLinks.classList.remove('active');
             mobileMenuToggle.textContent = '☰';
@@ -46,7 +37,6 @@ document.querySelectorAll('.nav-links a').forEach(link => {
     });
 });
 
-// Navbar scroll effect...
 let lastScroll = 0;
 const navbar = document.querySelector('.navbar');
 
@@ -116,8 +106,6 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
     });
 });
 
-
-// Ripple Animation for Buttons (Enhanced)
 document.querySelectorAll('.btn').forEach(btn => {
     btn.addEventListener('click', function(e) {
         const ripple = document.createElement('span');
@@ -139,30 +127,152 @@ document.querySelectorAll('.btn').forEach(btn => {
     });
 });
 
-// --------------------------------------
-// Baybayin Translation Tool Logic 
-// --------------------------------------
+const watchDemoBtn = document.getElementById('watch-demo-btn');
+const videoModal = document.getElementById('video-modal');
+const videoClose = document.querySelector('.video-close');
+const youtubeIframe = document.getElementById('youtube-iframe');
+
+watchDemoBtn.addEventListener('click', (e) => {
+    e.preventDefault();
+    videoModal.style.display = 'flex';
+    youtubeIframe.src = 'https://www.youtube.com/embed/NE7mwkPdV04?autoplay=1';
+    document.body.style.overflow = 'hidden';
+});
+
+videoClose.addEventListener('click', () => {
+    videoModal.style.display = 'none';
+    youtubeIframe.src = '';
+    document.body.style.overflow = 'auto';
+});
+
+videoModal.addEventListener('click', (e) => {
+    if (e.target === videoModal) {
+        videoModal.style.display = 'none';
+        youtubeIframe.src = '';
+        document.body.style.overflow = 'auto';
+    }
+});
+
+const canvas = document.getElementById('drawing-canvas');
+const ctx = canvas.getContext('2d');
+const clearBtn = document.getElementById('clear-canvas');
+const guideBtn = document.getElementById('show-guide');
+let isDrawing = false;
+let showGuide = true;
+
+canvas.width = 200;
+canvas.height = 200;
+
+function drawGuide() {
+    if (!showGuide) return;
+    ctx.strokeStyle = 'rgba(47, 168, 79, 0.3)';
+    ctx.lineWidth = 3;
+    ctx.font = '120px serif';
+    ctx.fillStyle = 'rgba(47, 168, 79, 0.15)';
+    ctx.fillText('ᜋ', 40, 150);
+}
+
+function initCanvas() {
+    ctx.fillStyle = body.classList.contains('dark-mode') ? '#1a1a1a' : '#ffffff';
+    ctx.fillRect(0, 0, canvas.width, canvas.height);
+    drawGuide();
+}
+
+initCanvas();
+
+canvas.addEventListener('mousedown', startDrawing);
+canvas.addEventListener('mousemove', draw);
+canvas.addEventListener('mouseup', stopDrawing);
+canvas.addEventListener('mouseout', stopDrawing);
+
+canvas.addEventListener('touchstart', (e) => {
+    e.preventDefault();
+    const touch = e.touches[0];
+    const mouseEvent = new MouseEvent('mousedown', {
+        clientX: touch.clientX,
+        clientY: touch.clientY
+    });
+    canvas.dispatchEvent(mouseEvent);
+});
+
+canvas.addEventListener('touchmove', (e) => {
+    e.preventDefault();
+    const touch = e.touches[0];
+    const mouseEvent = new MouseEvent('mousemove', {
+        clientX: touch.clientX,
+        clientY: touch.clientY
+    });
+    canvas.dispatchEvent(mouseEvent);
+});
+
+canvas.addEventListener('touchend', (e) => {
+    e.preventDefault();
+    const mouseEvent = new MouseEvent('mouseup', {});
+    canvas.dispatchEvent(mouseEvent);
+});
+
+function startDrawing(e) {
+    isDrawing = true;
+    const rect = canvas.getBoundingClientRect();
+    const x = e.clientX - rect.left;
+    const y = e.clientY - rect.top;
+    ctx.beginPath();
+    ctx.moveTo(x, y);
+}
+
+function draw(e) {
+    if (!isDrawing) return;
+    
+    const rect = canvas.getBoundingClientRect();
+    const x = e.clientX - rect.left;
+    const y = e.clientY - rect.top;
+    
+    ctx.strokeStyle = body.classList.contains('dark-mode') ? '#4dc46f' : '#2fa84f';
+    ctx.lineWidth = 4;
+    ctx.lineCap = 'round';
+    ctx.lineJoin = 'round';
+    ctx.lineTo(x, y);
+    ctx.stroke();
+}
+
+function stopDrawing() {
+    isDrawing = false;
+}
+
+clearBtn.addEventListener('click', () => {
+    initCanvas();
+});
+
+guideBtn.addEventListener('click', () => {
+    showGuide = !showGuide;
+    guideBtn.textContent = showGuide ? 'Guide' : 'Hide Guide';
+    initCanvas();
+});
+
+themeToggle.addEventListener('click', () => {
+    setTimeout(() => {
+        initCanvas();
+    }, 50);
+});
 
 const translateButton = document.getElementById('translate-button');
 const tagalogInput = document.getElementById('tagalog-input');
 const baybayinOutput = document.getElementById('baybayin-output');
 
-// Baybayin Mapping with Virama (Pamudpod) Support
 const baseMap = {
     'a': 'ᜀ', 'i': 'ᜁ', 'e': 'ᜁ', 'u': 'ᜂ', 'o': 'ᜂ',
     'b': 'ᜊ', 'k': 'ᜃ', 'd': 'ᜇ', 'g': 'ᜄ', 'h': 'ᜑ',
     'l': 'ᜎ', 'm': 'ᜋ', 'n': 'ᜈ', 'ng': 'ᜅ', 'p': 'ᜉ',
-    's': 'ᜐ', 't': 'ᜆ', 'w': 'ᜏ', 'y': 'ᜌ', 'r': 'ᜇ', // R is mapped to D/RA
+    's': 'ᜐ', 't': 'ᜆ', 'w': 'ᜏ', 'y': 'ᜌ', 'r': 'ᜇ',
 };
 
 const vowelModifier = {
     'i': 'ᜒ', 'e': 'ᜒ', 'u': 'ᜓ', 'o': 'ᜓ'
 };
 
-const virama = '᜔'; // Pamudpod / Cross Mark for final consonant
+const virama = '᜔';
 
 function syllabify(text) {
-    // 1. Normalize and clean the input
     let cleanText = text.toLowerCase().replace(/[^a-zñ\s]/g, '').trim();
     if (!cleanText) return [];
 
@@ -171,9 +281,7 @@ function syllabify(text) {
 
     const vowels = ['a', 'e', 'i', 'o', 'u'];
     
-    // Consonants are used for CV and C-ending checks
     const consonants = Object.keys(baseMap).filter(c => c.length === 1 && !vowels.includes(c));
-    const longConsonants = ['ng'];
 
     for (let word of words) {
         if (!word) continue;
@@ -183,42 +291,35 @@ function syllabify(text) {
         while (i < word.length) {
             let foundSyllable = false;
 
-            // Check for NGA + Vowel (e.g., ngi)
             if (i + 2 <= word.length && word.substring(i, i + 2) === 'ng' && (i + 2 < word.length && vowels.includes(word[i+2]))) {
-                wordSyllables.push(word.substring(i, i + 3)); // ng-vowel
+                wordSyllables.push(word.substring(i, i + 3));
                 i += 3;
                 foundSyllable = true;
             } 
-            // Check for NGA as base or final consonant
             else if (i + 2 <= word.length && word.substring(i, i + 2) === 'ng' && (i + 2 === word.length || !vowels.includes(word[i+2]))) {
                 wordSyllables.push('ng');
                 i += 2;
                 foundSyllable = true;
             }
             
-            // Check for Vowel (A, E, I, O, U)
             if (!foundSyllable && vowels.includes(word[i])) {
                 wordSyllables.push(word[i]);
                 i += 1;
                 foundSyllable = true;
             }
 
-            // Check for Consonant-Vowel (CV)
             if (!foundSyllable && consonants.includes(word[i])) {
                 if (i + 1 < word.length && vowels.includes(word[i+1])) {
-                    // Found CV
                     wordSyllables.push(word.substring(i, i + 2));
                     i += 2;
                     foundSyllable = true;
                 } else {
-                    // Found a standalone Consonant (C)
                     wordSyllables.push(word[i]);
                     i += 1;
                     foundSyllable = true;
                 }
             }
             
-            // Fallback (shouldn't be strictly necessary with clean input)
             if (!foundSyllable) {
                 i += 1; 
             }
@@ -231,7 +332,6 @@ function syllabify(text) {
 function translateToBaybayin() {
     let input = tagalogInput.value;
     if (!input.trim()) {
-        // Set the output to the sample translation when empty
         baybayinOutput.textContent = 'ᜋᜄᜈ᜔ᜇᜅ᜔ ᜂᜋᜄ ᜉᜒᜎᜒᜉᜒᜈᜐ᜔';
         return;
     }
@@ -244,13 +344,11 @@ function translateToBaybayin() {
         
         for (const syllable of wordSyllables) {
             
-            // 1. Vowels (A, I, E, U, O) - syllable.length === 1
             if (syllable.length === 1 && 'aeiou'.includes(syllable)) {
                 wordBaybayin += baseMap[syllable];
                 continue;
             }
 
-            // 2. Consonant-Vowel (CV, including NGA-V) - syllable.length >= 2
             if ('aeiou'.includes(syllable.slice(-1))) {
                 const vowel = syllable.slice(-1);
                 let consonant = syllable.substring(0, syllable.length - 1);
@@ -259,7 +357,6 @@ function translateToBaybayin() {
 
                 if (baseMap[consonant]) {
                     wordBaybayin += baseMap[consonant];
-                    // Apply Kudlit if vowel is I/E or U/O
                     if (vowel !== 'a') {
                         wordBaybayin += vowelModifier[vowel];
                     }
@@ -267,20 +364,17 @@ function translateToBaybayin() {
                 continue;
             }
 
-            // 3. Standalone Consonant (C)
             if (syllable.length === 1 && !'aeiou'.includes(syllable)) {
                 const char = syllable;
                 let baseConsonant = char;
                 if (char === 'r') { baseConsonant = 'd'; } 
 
-                // Use the inherent A vowel for the base consonant, then add Virama (Pamudpod)
                 if (baseMap[baseConsonant]) {
                     wordBaybayin += baseMap[baseConsonant] + virama;
                 }
                 continue;
             }
             
-            // 4. Final 'ng'
             if (syllable === 'ng') {
                 wordBaybayin += baseMap['ng'] + virama;
             }
@@ -291,7 +385,6 @@ function translateToBaybayin() {
     baybayinOutput.textContent = baybayinResult.join(' ');
 }
 
-// Initial translation for the placeholder text
 translateToBaybayin(); 
 translateButton.addEventListener('click', translateToBaybayin);
 tagalogInput.addEventListener('input', translateToBaybayin); 
@@ -301,7 +394,6 @@ tagalogInput.addEventListener('keydown', (e) => {
         translateToBaybayin();
     }
 });
-
 
 const style = document.createElement('style');
 style.textContent = `
@@ -335,7 +427,7 @@ style.textContent = `
             border-radius: 0 0 0 16px;
             transition: right 0.3s ease;
             gap: 1.5rem;
-            z-index: 999; /* Ensure menu is on top of content */
+            z-index: 999;
         }
         
         .nav-links.active {
@@ -347,7 +439,6 @@ style.textContent = `
         }
     }
     
-    /* Ripple Animation Styles */
     .ripple {
         position: absolute;
         border-radius: 50%;
@@ -359,7 +450,7 @@ style.textContent = `
     }
     
     .btn-secondary .ripple {
-        background: rgba(47,168,79, 0.3); /* Primary color ripple for secondary button */
+        background: rgba(47,168,79, 0.3);
     }
 
     @keyframes ripple-effect {
