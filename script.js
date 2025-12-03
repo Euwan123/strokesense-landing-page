@@ -3,16 +3,13 @@ const body = document.body;
 const currentTheme = localStorage.getItem('theme') || 'light';
 if (currentTheme === 'dark') {
     body.classList.add('dark-mode');
-    themeToggle.textContent = '☀️';
 }
 
 themeToggle.addEventListener('click', () => {
     body.classList.toggle('dark-mode');
-    
     const isDarkMode = body.classList.contains('dark-mode');
-    themeToggle.textContent = isDarkMode ? '☀️' : '🌙';
-    
     localStorage.setItem('theme', isDarkMode ? 'dark' : 'light');
+    themeToggle.textContent = isDarkMode ? '☀️' : '🌙'; 
 });
 
 const mobileMenuToggle = document.querySelector('.mobile-menu-toggle');
@@ -100,6 +97,76 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
     });
 });
 
+
+// Ripple Animation for Buttons (Enhanced)
+document.querySelectorAll('.btn').forEach(btn => {
+    btn.addEventListener('click', function(e) {
+        const ripple = document.createElement('span');
+        const rect = this.getBoundingClientRect();
+        const size = Math.max(rect.width, rect.height);
+        const x = e.clientX - rect.left - size / 2;
+        const y = e.clientY - rect.top - size / 2;
+        
+        ripple.style.width = ripple.style.height = size + 'px';
+        ripple.style.left = x + 'px';
+        ripple.style.top = y + 'px';
+        ripple.classList.add('ripple');
+        
+        this.appendChild(ripple);
+        
+        setTimeout(() => {
+            ripple.remove();
+        }, 600);
+    });
+});
+
+// Translation Tool Logic (New Feature Functionality)
+const translateButton = document.getElementById('translate-button');
+const tagalogInput = document.getElementById('tagalog-input');
+const baybayinOutput = document.getElementById('baybayin-output');
+
+// Simple Placeholder Mapping (In a real app, this would use an API or complex logic)
+const baybayinMap = {
+    'a': 'ᜀ', 'e': 'ᜁ', 'i': 'ᜁ', 'o': 'ᜂ', 'u': 'ᜂ',
+    'ba': 'ᜊ', 'be': 'ᜊᜒ', 'bi': 'ᜊᜒ', 'bo': 'ᜊᜓ', 'bu': 'ᜊᜓ',
+    'ka': 'ᜃ', 'ke': 'ᜃᜒ', 'ki': 'ᜃᜒ', 'ko': 'ᜃᜓ', 'ku': 'ᜃᜓ',
+    'da': 'ᜇ', 'ra': 'ᜇ', 'de': 'ᜇᜒ', 'di': 'ᜇᜒ', 'do': 'ᜇᜓ', 'du': 'ᜇᜓ', 'ro': 'ᜇᜓ', 'ru': 'ᜇᜓ',
+    'ga': 'ᜄ', 'ge': 'ᜄᜒ', 'gi': 'ᜄᜒ', 'go': 'ᜄᜓ', 'gu': 'ᜄᜓ',
+    'ha': 'ᜑ', 'he': 'ᜑᜒ', 'hi': 'ᜑᜒ', 'ho': 'ᜑᜓ', 'hu': 'ᜑᜓ',
+    'la': 'ᜎ', 'le': 'ᜎᜒ', 'li': 'ᜎᜒ', 'lo': 'ᜎᜓ', 'lu': 'ᜎᜓ',
+    'ma': 'ᜋ', 'me': 'ᜋᜒ', 'mi': 'ᜋᜒ', 'mo': 'ᜋᜓ', 'mu': 'ᜋᜓ',
+    'na': 'ᜈ', 'ne': 'ᜈᜒ', 'ni': 'ᜈᜒ', 'no': 'ᜈᜓ', 'nu': 'ᜈᜓ',
+    'nga': 'ᜅ', 'nge': 'ᜅᜒ', 'ngi': 'ᜅᜒ', 'ngo': 'ᜅᜓ', 'ngu': 'ᜅᜓ',
+    'pa': 'ᜉ', 'pe': 'ᜉᜒ', 'pi': 'ᜉᜒ', 'po': 'ᜉᜓ', 'pu': 'ᜉᜓ',
+    'sa': 'ᜐ', 'se': 'ᜐᜒ', 'si': 'ᜐᜒ', 'so': 'ᜐᜓ', 'su': 'ᜐᜓ',
+    'ta': 'ᜆ', 'te': 'ᜆᜒ', 'ti': 'ᜆᜒ', 'to': 'ᜆᜓ', 'tu': 'ᜆᜓ',
+    'wa': 'ᜏ', 'we': 'ᜏᜒ', 'wi': 'ᜏᜒ', 'wo': 'ᜏᜓ', 'wu': 'ᜏᜓ',
+    'ya': 'ᜌ', 'ye': 'ᜌᜒ', 'yi': 'ᜌᜒ', 'yo': 'ᜌᜓ', 'yu': 'ᜌᜓ',
+    // Final consonant marker (Virama / Pamudpod) is required for modern systems, but Baybayin traditionally uses context.
+    // We will simplify this and just use the base character for ending consonants for demonstration.
+    'mabuhay': 'ᜋᜊᜓᜑᜌ᜔' // Custom mapping for demo text
+};
+
+function translateToBaybayin() {
+    let input = tagalogInput.value.toLowerCase().trim();
+    
+    if (input in baybayinMap) {
+        baybayinOutput.textContent = baybayinMap[input];
+    } else {
+        // Simple default message for non-mapped words
+        baybayinOutput.textContent = 'Translation not available. Try "Mabuhay".';
+    }
+}
+
+translateButton.addEventListener('click', translateToBaybayin);
+tagalogInput.addEventListener('keydown', (e) => {
+    if (e.key === 'Enter') {
+        e.preventDefault();
+        translateToBaybayin();
+    }
+});
+
+
 const style = document.createElement('style');
 style.textContent = `
     .feature-card,
@@ -140,6 +207,28 @@ style.textContent = `
         
         .nav-links a {
             font-size: 1.1rem;
+        }
+    }
+    
+    /* Ripple Animation Styles */
+    .ripple {
+        position: absolute;
+        border-radius: 50%;
+        background: rgba(255, 255, 255, 0.5);
+        transform: scale(0);
+        animation: ripple-effect 0.6s linear;
+        pointer-events: none;
+        z-index: 10;
+    }
+    
+    .btn-secondary .ripple {
+        background: rgba(47,168,79, 0.3); /* Primary color ripple for secondary button */
+    }
+
+    @keyframes ripple-effect {
+        to {
+            transform: scale(4);
+            opacity: 0;
         }
     }
 `;
