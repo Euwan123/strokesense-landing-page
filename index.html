@@ -6,6 +6,7 @@
     <title>StrokeSense - Learn Baybayin</title>
     <link rel="stylesheet" href="style.css">
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 </head>
 <body>
     <nav class="navbar">
@@ -16,9 +17,9 @@
             <ul class="nav-links">
                 <li><a href="https://euwan123.github.io/my-portfolio/" class="btn btn-secondary nav-portfolio-btn">Go back to Portfolio</a></li>
                 <li><a href="#features">Features</a></li>
-                <li><a href="#how-it-works">How It Works</a></li>
+                <li><a href="#how-it-works">Process</a></li>
                 <li><a href="#translation">Translation Tool</a></li>
-                <li><a href="#gallery">Gallery</a></li>
+                <li><a href="#gallery">Visuals</a></li>
                 <li><a href="#testimonials">Reviews</a></li>
                 <li><a href="#cta">Get Started</a></li>
             </ul>
@@ -204,13 +205,13 @@
                 <p>Instantly convert modern Filipino (Tagalog) text into beautiful, readable Baybayin script.</p>
             </div>
             <div class="translation-tool">
-                <textarea id="tagalog-input" placeholder="Enter Tagalog text here (e.g., 'Mabuhay')"></textarea>
+                <textarea id="tagalog-input" placeholder="Enter Tagalog text here (e.g., 'Magandang umaga, Pilipinas!')"></textarea>
                 <button id="translate-button" class="btn btn-primary">
                     <span>Translate to Baybayin</span>
                     <span class="btn-icon">→</span>
                 </button>
                 <div id="baybayin-output" class="baybayin-result">
-                    ᜋᜊᜓᜑᜌ᜔
+                    ᜋᜄᜈ᜔ᜇᜅ᜔ ᜂᜋᜄ ᜉᜒᜎᜒᜉᜒᜈᜐ᜔
                 </div>
             </div>
         </div>
@@ -370,30 +371,72 @@
                         An AI-powered platform dedicated to preserving and teaching the ancient Filipino script, Baybayin.
                     </p>
                     <div class="social-links">
-                        <a href="https://github.com/Euwan123" class="social-icon">💻</a>
-                        <a href="https://euwan123.github.io/my-portfolio/" class="social-icon">🖼️</a>
-                        <a href="https://www.linkedin.com/in/euwan-abogadie-833980313/" class="social-icon">🔗</a>
+                        <a href="https://github.com/Euwan123" class="social-icon" aria-label="GitHub">
+                            <i class="fab fa-github"></i>
+                        </a>
+                        <a href="https://euwan123.github.io/my-portfolio/" class="social-icon" aria-label="Portfolio">
+                            <i class="fas fa-desktop"></i>
+                        </a>
+                        <a href="https://www.linkedin.com/in/euwan-abogadie-833980313/" class="social-icon" aria-label="LinkedIn">
+                            <i class="fab fa-linkedin-in"></i>
+                        </a>
                     </div>
                 </div>
                 <div class="footer-links">
                     <div class="footer-column">
                         <h4>Product</h4>
                         <a href="#features">Features</a>
-                        <a href="#how-it-works">How It Works</a>
-                        <a href="#gallery">Gallery</a>
+                        <a href="#how-it-works">Process</a>
+                        <a href="#gallery">Visuals</a>
                         <a href="#">Pricing</a>
+                    </div>
+                    <div class="footer-column">
+                        <h4>Resources</h4>
+                        <a href="#">Blog</a>
+                        <a href="#">Tutorials</a>
                     </div>
                 </div>
             </div>
             <div class="footer-bottom">
-                <div class="creator-profile">
-                    <img src="EuwanPic.jpg" alt="Profile of Euwan Abogadie" class="creator-image">
-                    <p class="creator-text">Euwan Abogadie created this.</p>
-                </div>
                 <p>© 2025 StrokeSense. All Rights Reserved. Made by Euwan Gabriel Abogadie, Mapua Malayan colleges mindanao.</p>
             </div>
         </div>
     </footer>
+
+    <div id="creator-sidebar" class="creator-sidebar">
+        <div class="sidebar-toggle-container">
+            <button id="sidebar-toggle" class="sidebar-toggle" aria-label="Toggle Creator Profile Sidebar">
+                <i class="fas fa-chevron-left"></i>
+            </button>
+        </div>
+        <div class="sidebar-content">
+            <div class="creator-profile">
+                <img src="EuwanPic.jpg" alt="Profile of Euwan Abogadie" class="creator-image">
+                <h3 class="creator-text">Euwan Abogadie created this.</h3>
+            </div>
+            
+            <div class="reflection-box">
+                <h4>Reflection on CSS Design</h4>
+                <p>CSS was instrumental in transforming this project from a basic wireframe into a dynamic, visually engaging application. It allowed for the creation of a seamless user experience, notably through the responsive design that ensures mobile accessibility and the modern light/dark mode switch styling. Furthermore, CSS enabled the addition of subtle yet impactful animations, like the phone mockup movement and the button ripple effects, significantly enhancing the professional and interactive feel of the interface.</p>
+            </div>
+
+            <div class="sidebar-websites">
+                <h4>My Websites</h4>
+                <a href="https://github.com/Euwan123" class="social-icon sidebar-icon" aria-label="GitHub">
+                    <i class="fab fa-github"></i>
+                    <span>GitHub</span>
+                </a>
+                <a href="https://euwan123.github.io/my-portfolio/" class="social-icon sidebar-icon" aria-label="Portfolio">
+                    <i class="fas fa-desktop"></i>
+                    <span>Portfolio</span>
+                </a>
+                <a href="https://www.linkedin.com/in/euwan-abogadie-833980313/" class="social-icon sidebar-icon" aria-label="LinkedIn">
+                    <i class="fab fa-linkedin-in"></i>
+                    <span>LinkedIn</span>
+                </a>
+            </div>
+        </div>
+    </div>
 
     <script src="script.js"></script>
 </body>
