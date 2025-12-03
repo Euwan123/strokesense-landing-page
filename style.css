@@ -173,7 +173,7 @@ body.dark-mode .theme-btn::before {
 }
 
 .mobile-menu-toggle {
-    display: none;
+    display: none; /* Default is hidden on desktop */
     background: none;
     border: none;
     font-size: 1.5rem;
@@ -1178,6 +1178,15 @@ body.dark-mode .theme-btn::before {
 
 /* Media Queries for Mobile Support (Ensures mobile experience is supported) */
 @media (max-width: 1024px) {
+    /* Specific overrides for screen sizes <= 1024px */
+    .nav-links {
+        display: none; /* Hide standard links on smaller screens */
+    }
+
+    .mobile-menu-toggle {
+        display: block; /* Show the hamburger button on smaller screens */
+    }
+
     body.sidebar-open {
         padding-right: 0; 
     }
@@ -1218,15 +1227,15 @@ body.dark-mode .theme-btn::before {
     }
 }
 
-@media (max-width: 768px) {
-    .nav-links {
+@media (min-width: 1025px) {
+    /* Specific rule to ensure hamburger is hidden on large screens */
+    .mobile-menu-toggle {
         display: none;
     }
+}
 
-    .mobile-menu-toggle {
-        display: block;
-    }
 
+@media (max-width: 768px) {
     .hero-title {
         font-size: 2.5rem;
     }
