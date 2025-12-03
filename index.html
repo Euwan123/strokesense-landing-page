@@ -11,13 +11,13 @@
     <nav class="navbar">
         <div class="container nav-container">
             <div class="logo">
-                <span class="logo-icon">📜</span>
                 <span class="logo-text">StrokeSense</span>
             </div>
             <ul class="nav-links">
                 <li><a href="https://euwan123.github.io/my-portfolio/" class="btn btn-secondary nav-portfolio-btn">Go back to Portfolio</a></li>
                 <li><a href="#features">Features</a></li>
                 <li><a href="#how-it-works">How It Works</a></li>
+                <li><a href="#translation">Translation Tool</a></li>
                 <li><a href="#gallery">Gallery</a></li>
                 <li><a href="#testimonials">Reviews</a></li>
                 <li><a href="#cta">Get Started</a></li>
@@ -80,8 +80,14 @@
                     <div class="baybayin-char">ᜃ</div>
                     <div class="char-label">KA</div>
                 </div>
-                <div class="image-mockup">
-                    <img src="BayBayin Language.jpg" alt="Baybayin Language Script" class="baybayin-image">
+                <div class="phone-mockup">
+                    <div class="phone-screen">
+                        <div class="screen-content">
+                            <span class="screen-title">Draw "Ma"</span>
+                            <div class="drawing-area"></div>
+                            <div class="feedback-indicator">AI Accuracy: 92%</div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -185,6 +191,26 @@
                         <p>Apply your skills by translating common Filipino words and phrases. Share your creations with the community and celebrate your mastery.</p>
                         <div class="step-icon">🖋️</div>
                     </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="translation" id="translation">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-badge">New Feature</span>
+                <h2>Baybayin Translation Tool</h2>
+                <p>Instantly convert modern Filipino (Tagalog) text into beautiful, readable Baybayin script.</p>
+            </div>
+            <div class="translation-tool">
+                <textarea id="tagalog-input" placeholder="Enter Tagalog text here (e.g., 'Mabuhay')"></textarea>
+                <button id="translate-button" class="btn btn-primary">
+                    <span>Translate to Baybayin</span>
+                    <span class="btn-icon">→</span>
+                </button>
+                <div id="baybayin-output" class="baybayin-result">
+                    ᜋᜊᜓᜑᜌ᜔
                 </div>
             </div>
         </div>
@@ -338,16 +364,15 @@
             <div class="footer-main">
                 <div class="footer-info">
                     <div class="logo">
-                        <span class="logo-icon">📜</span>
                         <span class="logo-text">StrokeSense</span>
                     </div>
                     <p class="footer-description">
                         An AI-powered platform dedicated to preserving and teaching the ancient Filipino script, Baybayin.
                     </p>
                     <div class="social-links">
-                        <a href="https://github.com/Euwan123" class="social-icon">G</a>
-                        <a href="https://euwan123.github.io/my-portfolio/" class="social-icon">P</a>
-                        <a href="https://www.linkedin.com/in/euwan-abogadie-833980313/" class="social-icon">in</a>
+                        <a href="https://github.com/Euwan123" class="social-icon">💻</a>
+                        <a href="https://euwan123.github.io/my-portfolio/" class="social-icon">🖼️</a>
+                        <a href="https://www.linkedin.com/in/euwan-abogadie-833980313/" class="social-icon">🔗</a>
                     </div>
                 </div>
                 <div class="footer-links">
@@ -361,6 +386,10 @@
                 </div>
             </div>
             <div class="footer-bottom">
+                <div class="creator-profile">
+                    <img src="EuwanPic.jpg" alt="Profile of Euwan Abogadie" class="creator-image">
+                    <p class="creator-text">Euwan Abogadie created this.</p>
+                </div>
                 <p>© 2025 StrokeSense. All Rights Reserved. Made by Euwan Gabriel Abogadie, Mapua Malayan colleges mindanao.</p>
             </div>
         </div>
