@@ -216,7 +216,6 @@ body.dark-mode .theme-btn::before {
 }
 
 .btn-cta {
-    background: white;
     color: var(--primary-color);
     font-size: 1.1rem;
     padding: 16px 40px;
@@ -493,7 +492,6 @@ body.dark-mode .theme-btn::before {
     padding: 8px 16px;
     border-radius: 8px;
     cursor: pointer;
-    transition: all 0.3s ease;
     font-weight: 600;
 }
 
@@ -1146,6 +1144,7 @@ body.dark-mode .theme-btn::before {
 
 .video-modal.active {
     opacity: 1;
+    display: flex;
 }
 
 .video-modal-content {
