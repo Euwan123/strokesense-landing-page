@@ -724,6 +724,12 @@ body.dark-mode .theme-btn::before {
     box-shadow: var(--shadow-sm);
 }
 
+/* ... existing CSS code ... */
+
+/* --------------------
+    7. TRANSLATION TOOL
+   -------------------- */
+
 .translation {
     padding: 100px 0;
     background-color: var(--bg-secondary);
@@ -736,17 +742,20 @@ body.dark-mode .theme-btn::before {
     background: var(--card-bg);
     padding: 3rem;
     border-radius: 16px;
-    box-shadow: var(--shadow-lg);
+    box-shadow: var(--shadow-lg); /* Slightly heavier shadow for focus */
     border: 1px solid var(--border-color);
+    display: flex; /* Use flexbox for better layout control */
+    flex-direction: column;
+    gap: 1.5rem; /* Consistent spacing between elements */
 }
 
 #tagalog-input {
     width: 100%;
     min-height: 150px;
-    padding: 1rem;
-    margin-bottom: 1.5rem;
+    padding: 1.2rem;
+    /* margin-bottom removed due to flex gap */
     border: 2px solid var(--border-color);
-    border-radius: 8px;
+    border-radius: 12px; /* Slightly rounder corners */
     font-size: 1.1rem;
     resize: vertical;
     background: var(--bg-secondary);
@@ -757,20 +766,29 @@ body.dark-mode .theme-btn::before {
 #tagalog-input:focus {
     border-color: var(--primary-color);
     outline: none;
+    box-shadow: 0 0 0 3px rgba(47, 168, 79, 0.2); /* Focus ring */
+}
+
+#translate-button {
+    width: 100%; /* Make button full width */
+    padding: 1rem;
 }
 
 .baybayin-result {
     font-family: serif; 
-    font-size: 2rem;
-    margin-top: 2rem;
+    font-size: 2.5rem; /* Larger for better visibility of Baybayin script */
+    line-height: 1.4;
+    margin-top: 0.5rem; 
     color: var(--primary-color);
-    min-height: 50px;
-    border: 2px dashed rgba(47,168,79,0.3);
-    padding: 1rem;
-    border-radius: 8px;
+    min-height: 100px; /* Increased minimum height */
+    border: 2px solid var(--border-color); /* Solid border instead of dashed */
+    padding: 1.5rem;
+    border-radius: 12px;
     background: var(--bg-secondary);
     white-space: pre-wrap;
     text-align: center;
+    font-weight: 500;
+    word-break: break-word;
 }
 
 .gallery {
