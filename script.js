@@ -79,6 +79,7 @@ const observer = new IntersectionObserver((entries) => {
             if (entry.target.classList.contains('stat-number')) {
                 const target = parseInt(entry.target.getAttribute('data-target'));
                 animateCounter(entry.target, target);
+    
                 observer.unobserve(entry.target);
             }
         }
@@ -100,6 +101,7 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             const offsetTop = target.offsetTop - 80;
             window.scrollTo({
                 top: offsetTop,
+                
                 behavior: 'smooth'
             });
         }
@@ -115,6 +117,7 @@ document.querySelectorAll('.btn').forEach(btn => {
         const y = e.clientY - rect.top - size / 2;
         
         ripple.style.width = ripple.style.height = size + 'px';
+  
         ripple.style.left = x + 'px';
         ripple.style.top = y + 'px';
         ripple.classList.add('ripple');
@@ -135,12 +138,14 @@ const youtubeIframe = document.getElementById('youtube-iframe');
 watchDemoBtn.addEventListener('click', (e) => {
     e.preventDefault();
     videoModal.style.display = 'flex';
+    videoModal.classList.add('active'); 
     youtubeIframe.src = 'https://www.youtube.com/embed/NE7mwkPdV04?autoplay=1';
     document.body.style.overflow = 'hidden';
 });
 
 videoClose.addEventListener('click', () => {
     videoModal.style.display = 'none';
+    videoModal.classList.remove('active');
     youtubeIframe.src = '';
     document.body.style.overflow = 'auto';
 });
@@ -148,6 +153,7 @@ videoClose.addEventListener('click', () => {
 videoModal.addEventListener('click', (e) => {
     if (e.target === videoModal) {
         videoModal.style.display = 'none';
+        videoModal.classList.remove('active');
         youtubeIframe.src = '';
         document.body.style.overflow = 'auto';
     }
@@ -184,7 +190,6 @@ canvas.addEventListener('mousedown', startDrawing);
 canvas.addEventListener('mousemove', draw);
 canvas.addEventListener('mouseup', stopDrawing);
 canvas.addEventListener('mouseout', stopDrawing);
-
 canvas.addEventListener('touchstart', (e) => {
     e.preventDefault();
     const touch = e.touches[0];
@@ -194,7 +199,6 @@ canvas.addEventListener('touchstart', (e) => {
     });
     canvas.dispatchEvent(mouseEvent);
 });
-
 canvas.addEventListener('touchmove', (e) => {
     e.preventDefault();
     const touch = e.touches[0];
@@ -204,7 +208,6 @@ canvas.addEventListener('touchmove', (e) => {
     });
     canvas.dispatchEvent(mouseEvent);
 });
-
 canvas.addEventListener('touchend', (e) => {
     e.preventDefault();
     const mouseEvent = new MouseEvent('mouseup', {});
@@ -222,12 +225,12 @@ function startDrawing(e) {
 
 function draw(e) {
     if (!isDrawing) return;
-    
     const rect = canvas.getBoundingClientRect();
     const x = e.clientX - rect.left;
     const y = e.clientY - rect.top;
     
-    ctx.strokeStyle = body.classList.contains('dark-mode') ? '#4dc46f' : '#2fa84f';
+    ctx.strokeStyle = body.classList.contains('dark-mode') ?
+    '#4dc46f' : '#2fa84f';
     ctx.lineWidth = 4;
     ctx.lineCap = 'round';
     ctx.lineJoin = 'round';
@@ -265,24 +268,19 @@ const baseMap = {
     'l': 'ᜎ', 'm': 'ᜋ', 'n': 'ᜈ', 'ng': 'ᜅ', 'p': 'ᜉ',
     's': 'ᜐ', 't': 'ᜆ', 'w': 'ᜏ', 'y': 'ᜌ', 'r': 'ᜇ',
 };
-
 const vowelModifier = {
     'i': 'ᜒ', 'e': 'ᜒ', 'u': 'ᜓ', 'o': 'ᜓ'
 };
 
 const virama = '᜔';
-
 function syllabify(text) {
     let cleanText = text.toLowerCase().replace(/[^a-zñ\s]/g, '').trim();
     if (!cleanText) return [];
-
     const words = cleanText.split(/\s+/).filter(w => w.length > 0);
     let syllables = [];
 
     const vowels = ['a', 'e', 'i', 'o', 'u'];
-    
     const consonants = Object.keys(baseMap).filter(c => c.length === 1 && !vowels.includes(c));
-
     for (let word of words) {
         if (!word) continue;
         let i = 0;
@@ -290,7 +288,6 @@ function syllabify(text) {
 
         while (i < word.length) {
             let foundSyllable = false;
-
             if (i + 2 <= word.length && word.substring(i, i + 2) === 'ng' && (i + 2 < word.length && vowels.includes(word[i+2]))) {
                 wordSyllables.push(word.substring(i, i + 3));
                 i += 3;
@@ -321,7 +318,7 @@ function syllabify(text) {
             }
             
             if (!foundSyllable) {
-                i += 1; 
+                i += 1;
             }
         }
         syllables.push(wordSyllables);
@@ -338,10 +335,8 @@ function translateToBaybayin() {
 
     const wordsSyllables = syllabify(input);
     let baybayinResult = [];
-
     for (const wordSyllables of wordsSyllables) {
         let wordBaybayin = '';
-        
         for (const syllable of wordSyllables) {
             
             if (syllable.length === 1 && 'aeiou'.includes(syllable)) {
@@ -387,77 +382,10 @@ function translateToBaybayin() {
 
 translateToBaybayin(); 
 translateButton.addEventListener('click', translateToBaybayin);
-tagalogInput.addEventListener('input', translateToBaybayin); 
+tagalogInput.addEventListener('input', translateToBaybayin);
 tagalogInput.addEventListener('keydown', (e) => {
     if (e.key === 'Enter' && !e.shiftKey) { 
         e.preventDefault();
         translateToBaybayin();
     }
 });
-
-const style = document.createElement('style');
-style.textContent = `
-    .feature-card,
-    .step-item,
-    .gallery-item,
-    .testimonial-card {
-        opacity: 0;
-        transform: translateY(30px);
-        transition: opacity 0.6s ease, transform 0.6s ease;
-    }
-    
-    .feature-card.animate-in,
-    .step-item.animate-in,
-    .gallery-item.animate-in,
-    .testimonial-card.animate-in {
-        opacity: 1;
-        transform: translateY(0);
-    }
-    
-    @media (max-width: 1024px) {
-        .nav-links {
-            position: fixed;
-            top: 70px;
-            right: -100%;
-            background: var(--card-bg);
-            flex-direction: column;
-            width: 250px;
-            padding: 2rem;
-            box-shadow: var(--shadow-lg);
-            border-radius: 0 0 0 16px;
-            transition: right 0.3s ease;
-            gap: 1.5rem;
-            z-index: 999;
-        }
-        
-        .nav-links.active {
-            right: 0;
-        }
-        
-        .nav-links a {
-            font-size: 1.1rem;
-        }
-    }
-    
-    .ripple {
-        position: absolute;
-        border-radius: 50%;
-        background: rgba(255, 255, 255, 0.5);
-        transform: scale(0);
-        animation: ripple-effect 0.6s linear;
-        pointer-events: none;
-        z-index: 10;
-    }
-    
-    .btn-secondary .ripple {
-        background: rgba(47,168,79, 0.3);
-    }
-
-    @keyframes ripple-effect {
-        to {
-            transform: scale(4);
-            opacity: 0;
-        }
-    }
-`;
-document.head.appendChild(style);
