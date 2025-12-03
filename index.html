@@ -15,7 +15,7 @@
                 <span class="logo-text">StrokeSense</span>
             </div>
             <ul class="nav-links">
-                <li><a href="https://euwan123.github.io/my-portfolio/" class="btn btn-secondary nav-portfolio-btn">Creator Profile</a></li>
+                <li><a href="https://euwan123.github.io/my-portfolio/" class="btn btn-secondary nav-portfolio-btn">Creators Page</a></li>
                 <li><a href="#features">Features</a></li>
                 <li><a href="#how-it-works">Process</a></li>
                 <li><a href="#translation">Translation Tool</a></li>
@@ -48,10 +48,10 @@
                         <span>Start Learning Free</span>
                         <span class="btn-icon">→</span>
                     </a>
-                    <a href="#how-it-works" class="btn btn-secondary">
+                    <button id="watch-demo-btn" class="btn btn-secondary">
                         <span>Watch Demo</span>
                         <span class="btn-icon">▶</span>
-                    </a>
+                    </button>
                 </div>
                 <div class="hero-stats">
                     <div class="stat-item">
@@ -85,8 +85,12 @@
                     <div class="phone-screen">
                         <div class="screen-content">
                             <span class="screen-title">Draw "Ma"</span>
-                            <div class="drawing-area"></div>
-                            <div class="feedback-indicator">AI Accuracy: 92%</div>
+                            <canvas id="drawing-canvas" class="drawing-area"></canvas>
+                            <div class="canvas-controls">
+                                <button id="clear-canvas" class="canvas-btn">Clear</button>
+                                <button id="show-guide" class="canvas-btn">Guide</button>
+                            </div>
+                            <div class="feedback-indicator">Try drawing ᜋ</div>
                         </div>
                     </div>
                 </div>
@@ -96,6 +100,13 @@
             <div class="scroll-arrow">↓</div>
         </div>
     </header>
+
+    <div id="video-modal" class="video-modal">
+        <div class="video-modal-content">
+            <button class="video-close">&times;</button>
+            <iframe id="youtube-iframe" width="100%" height="100%" src="" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+        </div>
+    </div>
 
     <section class="features" id="features">
         <div class="container">
@@ -124,7 +135,7 @@
                     <div class="feature-highlight">Smart analytics</div>
                 </div>
                 <div class="feature-card">
-                    <div class="feature-icon">🏛️</div>
+                    <div class="feature-icon">🛕</div>
                     <h3>Cultural Heritage</h3>
                     <p>Learn authentic Baybayin characters while discovering the rich history, cultural context, and stories behind this beautiful ancient Filipino script.</p>
                     <div class="feature-highlight">Deep cultural insights</div>
@@ -158,7 +169,7 @@
                     <div class="step-content">
                         <h3>Interactive Handwriting Practice</h3>
                         <p>Start by tracing Baybayin characters with guided strokes. Our AI watches your technique and provides real-time corrections to help you perfect each character.</p>
-                        <div class="step-icon">✍️</div>
+                        <div class="step-icon">✏️</div>
                     </div>
                 </div>
                 <div class="step-item">
@@ -182,7 +193,7 @@
                     <div class="step-content">
                         <h3>Cultural Immersion</h3>
                         <p>Unlock engaging stories, fun facts, and historical context about Baybayin with every new character you master. Learn the *why*, not just the *how*.</p>
-                        <div class="step-icon">🏛️</div>
+                        <div class="step-icon">🛕</div>
                     </div>
                 </div>
                 <div class="step-item">
@@ -305,7 +316,7 @@
                     <div class="star-rating">⭐⭐⭐⭐⭐</div>
                     <p class="testimonial-text">"I've always wanted to learn Baybayin, but felt overwhelmed. StrokeSense made it so easy and fun! The AI feedback is a game-changer."</p>
                     <div class="testimonial-author">
-                        <div class="author-avatar">A</div>
+                        <img src="images/Goku.jpg" alt="Alex M." class="author-avatar-img">
                         <div>
                             <div class="author-name">Alex M.</div>
                             <div class="author-title">Student from Manila</div>
@@ -316,7 +327,7 @@
                     <div class="star-rating">⭐⭐⭐⭐⭐</div>
                     <p class="testimonial-text">"My kids are now competing to earn badges! It's an incredible way to introduce them to their heritage in a modern, engaging way."</p>
                     <div class="testimonial-author">
-                        <div class="author-avatar">J</div>
+                        <img src="images/Gojo Satoru.jpg" alt="Jennifer C." class="author-avatar-img">
                         <div>
                             <div class="author-name">Jennifer C.</div>
                             <div class="author-title">Parent in USA</div>
@@ -327,7 +338,7 @@
                     <div class="star-rating">⭐⭐⭐⭐⭐</div>
                     <p class="testimonial-text">"As a language educator, I highly recommend StrokeSense. The stroke analysis is top-notch and provides genuine learning value."</p>
                     <div class="testimonial-author">
-                        <div class="author-avatar">R</div>
+                        <img src="images/Sung Jin Woo.webp" alt="Prof. Reyes" class="author-avatar-img">
                         <div>
                             <div class="author-name">Prof. Reyes</div>
                             <div class="author-title">Language Expert</div>
@@ -351,7 +362,7 @@
                 </div>
                 <div class="cta-buttons">
                     <a href="#" class="btn btn-cta">
-                        <span>Start Learning Now</span>
+                        <span>Sign Up Now</span>
                         <span class="btn-icon">🚀</span>
                     </a>
                 </div>
